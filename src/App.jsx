@@ -32,8 +32,9 @@ function App() {
     <>
       <Search setSearchTerm={setSearchTerm} setRefireCount={setRefireCount}/>
       <Result />
-      // ^foundGifs.[refireCount], set fave
+      // ^foundGifs.[refireCount], setSavedFave as well
       <Favorite />
+      // ^savedFave
     </>
   )
 }

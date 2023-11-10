@@ -2,3 +2,6 @@
 // have a variable here for an object that keeps:
     // currently presented gif
     // number of reshuffles
+
+// store the URLz, nothing else.
+    // IDs are helpful for other APIs down the road, but need to minimize API calls due to the number of calls/day

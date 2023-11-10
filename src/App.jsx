@@ -8,13 +8,16 @@ import Result from './assets/components/Result'
 
 function App() {
   // const [count, setCount] = useState(0)
-  const [searchTerm, setSearchTerm] = useState()
-  const [foundGifs, setFoundGifs] = useState({
-    results:[],
-    guesses: 5,
-  })
+  const [searchTerm, setSearchTerm] = useState() 
+    // ^to store what the user is searching for and render results
+  const [foundGifs, setFoundGifs] = useState([])
+    // ^array of 5 gifs for the user to cycle through that they searched for
+  const [refireCount, setRefireCount] = useState(5);
+    // ^count of how many times they ahve reshuffled and forcing then to use a new search term
   const [savedFave, setSavedFave] = useState()
+    // ^to store the urls of the gif the user selects as a fave
   const [loading, setLoading] = useState(falsse)
+    // ^feedback to user that the page is still rendering
 
   async function findGif(){
     try {
@@ -27,8 +30,9 @@ function App() {
 
   return (
     <>
-      <Search setSearchTerm={setSearchTerm}/>
+      <Search setSearchTerm={setSearchTerm} setRefireCount={setRefireCount}/>
       <Result />
+      // ^foundGifs.[refireCount], set fave
       <Favorite />
     </>
   )

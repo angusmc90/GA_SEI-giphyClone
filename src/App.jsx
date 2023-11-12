@@ -12,7 +12,7 @@ function App() {
   // ^to store what the user is searching for and render results
   const [foundGifs, setFoundGifs] = useState([])
   // ^array of 5 gifs for the user to cycle through that they searched for
-  const [searchCount, setSearchCount] = useState(5);
+  const [searchCount, setSearchCount] = useState(0);
   // ^count of how many times they ahve reshuffled and forcing then to use a new search term
   const [savedFave, setSavedFave] = useState()
   // ^to store the urls of the gif the user selects as a fave
@@ -26,12 +26,16 @@ function App() {
 
     async function getGifs() {
       try {
-        console.log('GET GIF IS RUNNING - ' + searchTerm)
-        const response = await fetch(endpoint)
-        const body = await response.json();
-        const gifBuffet = body.data
-        console.dir(gifBuffet);
+        console.log('WE ARE GETTING THE RESULTS')
+        const response = await fetch(endpoint) // get response
+        const body = await response.json(); // change response into JSON
+        const gifBuffet = body.data // kesha saw us
+        //console.dir(gifBuffet);
         setFoundGifs(gifBuffet);
+
+
+        console.log('WE ARE UPDATING THE COUNTS SO WE CAN TELL USERS WHEN THEY HAVE SEEN ENOUGH GIFS')
+
       } catch (err) {
         console.log(err)
         // setLoading(false)
@@ -47,7 +51,8 @@ function App() {
     <>
       <h1>Giphy Clone</h1>
       <h2>Angus McCann</h2>
-      <Search setSearchTerm={setSearchTerm} />
+      <Search setSearchTerm={setSearchTerm} setSearchCount={setSearchCount}/>
+      <Favorite foundGifs={foundGifs} searchCount={searchCount}/>
     </>
   )
 }

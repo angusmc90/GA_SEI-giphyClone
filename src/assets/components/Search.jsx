@@ -10,7 +10,8 @@ export default function Search(props){
 
     function handleSubmit(e){
         e.preventDefault();
-        props.setSearchTerm(searchWord)
+        props.setSearchCount(5); // reset the search count when finding a new word
+        props.setSearchTerm(searchWord);
         // console.log(searchWord)
     }
 

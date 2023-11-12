@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -51,8 +51,16 @@ function App() {
     <>
       <h1>Giphy Clone</h1>
       <h2>Angus McCann</h2>
-      <Search setSearchTerm={setSearchTerm} setSearchCount={setSearchCount} setSavedFave={setSavedFave}/>
-      <Favorite foundGifs={foundGifs} searchCount={searchCount}/>
+      <div>
+        <Search setSearchTerm={setSearchTerm} setSearchCount={setSearchCount}/>
+        <Result foundGifs={foundGifs} searchCount={searchCount} setSavedFave={setSavedFave}/>
+      </div>
+
+
+      {/* add favorite as a right-rail item with a border rather than verticle
+      dont know how bit the originals are going to be but can set a determined width for the favorites gif */}
+    
+    
     </>
   )
 }

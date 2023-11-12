@@ -22,9 +22,16 @@ function App() {
   useEffect(() => {
     console.log('----USE EFFECT IS RUNNING')
 
-    function getGifs() {
+    const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=jxA2kRYFuIc1S5ByCkSmZOXE8znZLOSt&q=${searchTerm}&limit=5&offset=0&rating=r&lang=en&bundle=messaging_non_clips`
+
+    async function getGifs() {
       try {
         console.log('GET GIF IS RUNNING - ' + searchTerm)
+        const response = await fetch(endpoint)
+        const body = await response.json();
+        const gifBuffet = body.data
+        console.dir(gifBuffet);
+        setFoundGifs(gifBuffet);
       } catch (err) {
         console.log(err)
         // setLoading(false)
@@ -46,3 +53,12 @@ function App() {
 }
 
 export default App
+
+
+
+
+// const body = (e){
+//   for (let i = 0; i < 5; i++) {
+
+//   }
+// }

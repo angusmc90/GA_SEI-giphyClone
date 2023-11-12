@@ -4,19 +4,20 @@ export default function Search(props){
     const [searchWord, setSearchWord] = useState('');
 
     function handleChange(e){
-        setSearchWord(e.target.vslue)
+        setSearchWord(e.target.value)
+        // console.log(searchWord)
     }
 
     function handleSubmit(e){
         e.preventDefault();
         props.setSearchTerm(searchWord)
-        console.log('hanldeSubmit')
+        // console.log(searchWord)
     }
 
 
     return(
     <form onSubmit={handleSubmit}>
-        <input type ="text" defaultValue={searchWord} onChange={handleChange} placeholder='Search'></input>
+        <input type ="text" value={searchWord} onChange={handleChange} placeholder='Search'></input>
         <button>Search</button>
     </form>
     )

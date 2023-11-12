@@ -34,7 +34,7 @@ function App() {
         setFoundGifs(gifBuffet);
 
 
-        console.log('WE ARE UPDATING THE COUNTS SO WE CAN TELL USERS WHEN THEY HAVE SEEN ENOUGH GIFS')
+        console.log('WE ARE UPDATING THE COUNTS SO WE CAN TELL USERS WHEN THEY HAVE SEEN ALL GIFS')
 
       } catch (err) {
         console.log(err)
@@ -51,7 +51,7 @@ function App() {
     <>
       <h1>Giphy Clone</h1>
       <h2>Angus McCann</h2>
-      <Search setSearchTerm={setSearchTerm} setSearchCount={setSearchCount}/>
+      <Search setSearchTerm={setSearchTerm} setSearchCount={setSearchCount} setSavedFave={setSavedFave}/>
       <Favorite foundGifs={foundGifs} searchCount={searchCount}/>
     </>
   )

@@ -8,43 +8,39 @@ import Search from './assets/components/Search'
 
 function App() {
   // const [count, setCount] = useState(0)
-  const [searchTerm, setSearchTerm] = useState('') 
-    // ^to store what the user is searching for and render results
+  const [searchTerm, setSearchTerm] = useState("")
+  // ^to store what the user is searching for and render results
   const [foundGifs, setFoundGifs] = useState([])
-    // ^array of 5 gifs for the user to cycle through that they searched for
+  // ^array of 5 gifs for the user to cycle through that they searched for
   const [searchCount, setSearchCount] = useState(5);
-    // ^count of how many times they ahve reshuffled and forcing then to use a new search term
+  // ^count of how many times they ahve reshuffled and forcing then to use a new search term
   const [savedFave, setSavedFave] = useState()
-    // ^to store the urls of the gif the user selects as a fave
- // const [loading, setLoading] = useState(false)
-    // ^feedback to user that the page is still rendering
+  // ^to store the urls of the gif the user selects as a fave
+  // const [loading, setLoading] = useState(false)
+  // ^feedback to user that the page is still rendering
 
   useEffect(() => {
+    console.log('----USE EFFECT IS RUNNING')
 
-
-    function testingSearchComp() {
+    function getGifs() {
       try {
-        console.log('USE EFFECT IS RUNNING | >')
-      } catch (err){
+        console.log('GET GIF IS RUNNING - ' + searchTerm)
+      } catch (err) {
         console.log(err)
         // setLoading(false)
       }
     }
 
-    testingSearchComp()
+    getGifs()
 
-  }, [setSearchTerm])
+  }, [searchTerm])
 
-  
+
   return (
     <>
       <h1>Giphy Clone</h1>
       <h2>Angus McCann</h2>
-      <Search setSearchTerm={setSearchTerm}/>
-      <Result />
-      {/* ^foundGifs.[refireCount], setSavedFave as well */}
-      <Favorite />
-      {/* ^savedFave */}
+      <Search setSearchTerm={setSearchTerm} />
     </>
   )
 }

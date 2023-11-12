@@ -10,13 +10,13 @@ export default function Search(props){
     function handleSubmit(e){
         e.preventDefault();
         props.setSearchTerm(searchWord)
-        console.log('ERROR TESTING')
+        console.log('hanldeSubmit')
     }
 
 
     return(
     <form onSubmit={handleSubmit}>
-        <input type ="text" value={searchWord} onChange={handleChange}></input>
+        <input type ="text" defaultValue={searchWord} onChange={handleChange} placeholder='Search'></input>
         <button>Search</button>
     </form>
     )

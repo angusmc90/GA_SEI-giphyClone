@@ -42,22 +42,23 @@ export default function Result(props) {
 
     function handleShuffle() {
         //we only rendered 5 gifs and want to let the user know they gave run out of results when they shuffled endlessly
-        let count = --searchesLeft;
+        let count = searchesLeft;
+        --count;
         (count === 0) ? setSearchesLeft(5) : setSearchesLeft(count)
     }
 
-    function handleSave() {
-        console.log('results comp use-efect is engaged')
-    }
+    // function handleSave() {
+    //     console.log('results comp use-efect is engaged')
+    // }
 
     return(
         <div>
-            <div>
-                <br/> {/* To keep the buttons on one line */}
-                <button onClick={handleShuffle}>Shuffle</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button onClick={handleSave}>Make Favorite</button>
-                <br />
-            </div>
+            <br />
+                <div>{/* To keep the buttons on one line */}
+                    <button onClick={handleShuffle}>Shuffle</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button onClick={handleSave}>Make Favorite</button>
+                </div>
+            <br />
             <img id={gifObj.id} src={imgURL}/>            
         </div>
     )

@@ -11,9 +11,9 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("")
   // ^to store what the user is searching for and render results
   const [foundGifs, setFoundGifs] = useState([])
-  // ^array of 5 gifs for the user to cycle through that they searched for
-  const [searchCount, setSearchCount] = useState(0);
-  // ^count of how many times they ahve reshuffled and forcing then to use a new search term
+  // ^array of n-Gifs for the user to cycle through that they searched for
+  const [numGifs, setNumGifs] = useState(0);
+  // ^count of how many Gifs / reshuffles they have b4 forcing then to use a new search term
   const [savedFave, setSavedFave] = useState()
   // ^to store the urls of the gif the user selects as a fave
   // const [loading, setLoading] = useState(false)
@@ -22,7 +22,8 @@ function App() {
   useEffect(() => {
     console.log('----USE EFFECT IS RUNNING')
 
-    const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=jxA2kRYFuIc1S5ByCkSmZOXE8znZLOSt&q=${searchTerm}&limit=5&offset=0&rating=r&lang=en&bundle=messaging_non_clips`
+    const api_key = 'jxA2kRYFuIc1S5ByCkSmZOXE8znZLOSt'
+    const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${searchTerm}&limit=${numGifs}&offset=0&rating=r&lang=en&bundle=messaging_non_clips`
 
     async function getGifs() {
       try {
@@ -51,9 +52,10 @@ function App() {
     <>
       <h1>Giphy Clone</h1>
       <h2>Angus McCann</h2>
+      <br/>
       <div>
-        <Search setSearchTerm={setSearchTerm} setSearchCount={setSearchCount}/>
-        <Result foundGifs={foundGifs} searchCount={searchCount} setSavedFave={setSavedFave}/>
+        <Search setSearchTerm={setSearchTerm} setNumGifs={setNumGifs}/>
+        <Result foundGifs={foundGifs} numGifs={numGifs} setSavedFave={setSavedFave}/>
       </div>
 
 

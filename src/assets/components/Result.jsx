@@ -9,8 +9,8 @@
 
 import React, { useState, useEffect } from 'react';
 
-export default function Search(props) {
-    const [searchesLeft, setSearchesLeft] = useState(props.searchCount);
+export default function Result(props) {
+    const [searchesLeft, setSearchesLeft] = useState(props.numGifs);
     const gifArray = props.foundGifs;
     const [gifObj, setGifObj] = useState({});
     const [imgURL, setImgURL] = useState('');
@@ -22,31 +22,38 @@ export default function Search(props) {
     useEffect(() => {
         console.log('USE EFFECT IS RUNNING')
 
-        const pos = searchesLeft;
-        const singleObj = gifArray[pos]
-        setGifObj(singleObj);
-        const imgSrc = gifObj.images.original.url;
-        setImgURL(imgSrc);
+        async function getGif(){
+            const pos = searchesLeft - 1;
+            // using pos to pull a gif from a particular POSITION
+            // in the gifArray
+            const singleObj = gifArray[pos];
+            setGifObj(singleObj);
+            const imgSrc = singleObj.images.original.url;
+            // await didnt seem to work here?
+            setImgURL(imgSrc);
+        }
 
-    }, [searchesLeft])
+        getGif()
+
+    }, [searchesLeft, gifArray])
 
 
     function handleShuffle() {
         //we only rendered 5 gifs and want to let the user know they gave run out of results when they shuffled endlessly
-        let count = searchesLeft--;
-        count === -1 ? setSearchesLeft(5) : setSearchesLeft(count)
+        let count = --searchesLeft;
+        (count === 0) ? setSearchesLeft(5) : setSearchesLeft(count)
     }
 
     function handleSave() {
         console.log('results comp use-efect is engaged')
-
-
     }
 
     return(
         <div>
             <div> {/* To keep the buttons on one line */}
-                <button on>Shuffle</button>
+                <br />
+                <button onClick={handleShuffle}>Shuffle</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button onClick={handleSave}>Make Favorite</button>
             </div>
             <img id={gifObj.id} src={imgURL}/>            
         </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
 import './App.css'
 import Favorite from './assets/components/Favorite'
 import Result from './assets/components/Result'
@@ -38,7 +38,7 @@ function App() {
         // setLoading(false)
       }
     }
-    
+
     getGifs()
 
   }, [searchTerm, numGifs])
@@ -49,21 +49,19 @@ function App() {
     <>
       <h1>Giphy Clone</h1>
       <h2>Angus McCann</h2>
-      <br/>
+      <br />
       <div>
-        <Search setSearchTerm={setSearchTerm} setNumGifs={setNumGifs}/>
-        {foundGifs.length > 0 ? (
-        <Result foundGifs={foundGifs} numGifs={numGifs} setSavedFave={setSavedFave}/>
-      ) : (
-        <p>Go ahead - Look something up!.</p>
-      )}
-      </div>
-
-
-      {/* add favorite as a right-rail item with a border rather than verticle
+        <div>
+          <Search setSearchTerm={setSearchTerm} setNumGifs={setNumGifs} />
+          {foundGifs.length > 0 ? (
+            <Result foundGifs={foundGifs} numGifs={numGifs} setSavedFave={setSavedFave} />
+          ) : (
+            <p>Go ahead - Look something up! It won't bite!</p>
+          )}
+        </div>
+ {/* add favorite as a right-rail item with a border rather than verticle
       dont know how bit the originals are going to be but can set a determined width for the favorites gif */}
-    
-    
+      </div>
     </>
   )
 }

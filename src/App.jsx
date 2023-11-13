@@ -20,33 +20,30 @@ function App() {
   // ^feedback to user that the page is still rendering
 
   useEffect(() => {
-    console.log('----USE EFFECT IS RUNNING')
+    console.log('-----useEffect-----')
 
     const api_key = 'jxA2kRYFuIc1S5ByCkSmZOXE8znZLOSt'
     const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${searchTerm}&limit=${numGifs}&offset=0&rating=r&lang=en&bundle=messaging_non_clips`
 
     async function getGifs() {
       try {
-        console.log('WE ARE GETTING THE RESULTS')
         const response = await fetch(endpoint) // get response
-        const body = await response.json(); // change response into JSON
-        const gifBuffet = body.data // kesha saw us
-        //console.dir(gifBuffet);
-        setFoundGifs(gifBuffet);
-
-
-        console.log('WE ARE UPDATING THE COUNTS SO WE CAN TELL USERS WHEN THEY HAVE SEEN ALL GIFS')
+        const resArray = await response.json() //parses to json
+        const gifArray = resArray.data //get the of obj for these gifs
+        setFoundGifs(gifArray);
+        console.log("gifArray-->" + gifArray)
 
       } catch (err) {
         console.log(err)
         // setLoading(false)
       }
     }
-
+    
     getGifs()
 
-  }, [searchTerm])
+  }, [searchTerm, numGifs])
 
+  console.log(foundGifs)
 
   return (
     <>
@@ -55,7 +52,11 @@ function App() {
       <br/>
       <div>
         <Search setSearchTerm={setSearchTerm} setNumGifs={setNumGifs}/>
+        {foundGifs.length > 0 ? (
         <Result foundGifs={foundGifs} numGifs={numGifs} setSavedFave={setSavedFave}/>
+      ) : (
+        <p>Go ahead - Look something up!.</p>
+      )}
       </div>
 
 
@@ -70,10 +71,3 @@ function App() {
 export default App
 
 
-
-
-// const body = (e){
-//   for (let i = 0; i < 5; i++) {
-
-//   }
-// }

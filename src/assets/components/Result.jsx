@@ -12,6 +12,7 @@ import React, { useState, useEffect } from 'react';
 export default function Result(props) {
     const [searchesLeft, setSearchesLeft] = useState(props.numGifs);
     const gifArray = props.foundGifs;
+    console.log(props.foundGifts + " GIF ARRAY GIF ARRAY GIF ARRAY")
     const [gifObj, setGifObj] = useState({});
     const [imgURL, setImgURL] = useState('');
 
@@ -27,6 +28,7 @@ export default function Result(props) {
             // using pos to pull a gif from a particular POSITION
             // in the gifArray
             const singleObj = gifArray[pos];
+            console.log('CONSOLE LOG SINGLEOBJ---'+singleObj)
             setGifObj(singleObj);
             const imgSrc = singleObj.images.original.url;
             // await didnt seem to work here?
@@ -50,10 +52,11 @@ export default function Result(props) {
 
     return(
         <div>
-            <div> {/* To keep the buttons on one line */}
-                <br />
+            <div>
+                <br/> {/* To keep the buttons on one line */}
                 <button onClick={handleShuffle}>Shuffle</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button onClick={handleSave}>Make Favorite</button>
+                <br />
             </div>
             <img id={gifObj.id} src={imgURL}/>            
         </div>
